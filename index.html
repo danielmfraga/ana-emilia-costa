@@ -609,6 +609,22 @@
     padding-block: 40px 36px;
     border-top: 1px solid var(--rule-thin);
   }
+  .foot-brand {
+    display: flex; align-items: center; gap: 10px;
+    cursor: default;
+  }
+  .foot-icon {
+    width: 28px; height: 28px;
+    border-radius: 7px;
+    background: var(--paper-deep);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    transition: transform var(--ease) 400ms, background var(--ease) 400ms;
+  }
+  .foot-brand:hover .foot-icon { transform: rotate(-6deg) scale(1.1); background: var(--accent); }
+  .foot-brand:hover .foot-icon .icon-letter { fill: var(--paper); }
+  .foot-brand:hover .foot-icon .icon-dot { fill: var(--paper); }
+
   footer.foot .row {
     display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px;
     font-size: 10px;
@@ -938,11 +954,11 @@
 
 <footer class="foot">
   <div class="wrap row">
-    <span style="display:flex;align-items:center;gap:10px;">
-      <span style="width:28px;height:28px;border-radius:7px;background:var(--paper-deep);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+    <span class="foot-brand">
+      <span class="foot-icon">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 28" width="20" height="18">
-          <text x="10" y="22" text-anchor="middle" font-family="Georgia,serif" font-style="italic" font-size="22" fill="#1B1916">a</text>
-          <circle cx="24" cy="22" r="3.5" fill="#B45414"/>
+          <text x="10" y="22" text-anchor="middle" font-family="Georgia,serif" font-style="italic" font-size="22" class="icon-letter" fill="#1B1916">a</text>
+          <circle cx="24" cy="22" r="3.5" class="icon-dot" fill="#B45414"/>
         </svg>
       </span>
       Ana Emilia Costa · Psicóloga clínica
