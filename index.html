@@ -1,0 +1,714 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ana Emilia Costa — Psicóloga clínica</title>
+<meta name="description" content="Psicoterapia clínica online. Cantagalo, MG.">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@200;300;400;500;600;700;800;900&family=Newsreader:ital,opsz,wght@1,6..72,300..500&display=swap" rel="stylesheet">
+
+<style>
+  /* =====================================================
+     SISTEMA — off-white nuvem, tipografia como evento
+     ===================================================== */
+  :root {
+    --paper:        #ECEAE3;   /* cor nuvem */
+    --paper-deep:   #E2DFD5;   /* sombra de papel */
+    --paper-soft:   #F2F0EA;   /* destaque mais claro */
+    --ink:          #1B1916;
+    --ink-2:        #4B463E;
+    --mute:         #8C8678;
+    --rule:         rgba(27,25,22,0.14);
+    --rule-thin:    rgba(27,25,22,0.08);
+
+    --accent:       #B45414;   /* terracota */
+    --accent-deep:  #5E2A07;
+
+    --sans:    "Archivo", "Söhne", "Inter", system-ui, sans-serif;
+    --serif:   "Newsreader", "Lora", Georgia, serif;
+
+    --pad-x:   clamp(20px, 5vw, 80px);
+    --pad-y:   clamp(80px, 12vh, 160px);
+
+    --ease:    cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+  img { display: block; max-width: 100%; }
+
+  .wrap {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding-inline: var(--pad-x);
+  }
+
+  /* eyebrow */
+  .eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: var(--mute);
+  }
+
+  /* ===================================================
+     TOP BAR
+     =================================================== */
+  header.top {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 50;
+    padding: 22px 0;
+    transition: background var(--ease) 300ms, backdrop-filter var(--ease) 300ms;
+  }
+  header.top.scrolled {
+    background: color-mix(in srgb, var(--paper) 78%, transparent);
+    backdrop-filter: blur(14px) saturate(110%);
+    -webkit-backdrop-filter: blur(14px) saturate(110%);
+  }
+  header.top .bar {
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .mark {
+    font-family: var(--sans);
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-decoration: none;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .mark::before {
+    content: "";
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    transition: transform var(--ease) 400ms;
+  }
+  .mark:hover::before { transform: scale(1.4); }
+  .top-cta {
+    font-family: var(--sans);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-decoration: none;
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 10px 0;
+    position: relative;
+  }
+  .top-cta::after {
+    content: ""; position: absolute; left: 0; right: 0; bottom: 6px;
+    height: 1px; background: var(--ink);
+    transform-origin: right; transform: scaleX(1);
+    transition: transform var(--ease) 400ms;
+  }
+  .top-cta:hover::after { transform-origin: left; transform: scaleX(1); }
+  .top-cta .arr { transition: transform var(--ease) 400ms; display: inline-block; }
+  .top-cta:hover .arr { transform: translate(3px, -3px); }
+
+  /* ===================================================
+     HERO — type sculpture
+     =================================================== */
+  .hero {
+    min-height: 100vh;
+    min-height: 100svh;
+    padding-top: 100px;
+    padding-bottom: 60px;
+    display: flex; flex-direction: column;
+    justify-content: center;
+    position: relative;
+  }
+
+  .name-sculpture {
+    margin: 0;
+    line-height: 0.88;
+    letter-spacing: -0.04em;
+    color: var(--ink);
+    /* allow huge type */
+    font-size: clamp(72px, 17vw, 280px);
+    font-family: var(--sans);
+    font-weight: 200;
+    text-wrap: balance;
+  }
+  .name-sculpture .ln {
+    display: block;
+  }
+  /* "ana" — thin */
+  .ln-1 { font-weight: 200; letter-spacing: -0.02em; }
+  /* "emilia" — italic serif */
+  .ln-2 {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 300;
+    font-variation-settings: "opsz" 18;
+    margin-left: clamp(40px, 9vw, 150px);
+    color: var(--ink);
+    /* tweak: a touch larger optical compensation */
+    font-size: 1.06em;
+    line-height: 0.9;
+  }
+  /* "costa." — bold */
+  .ln-3 {
+    font-weight: 800;
+    letter-spacing: -0.05em;
+    margin-left: clamp(20px, 5vw, 80px);
+  }
+  .ln-3 .dot {
+    color: var(--accent);
+    margin-left: 2px;
+  }
+
+  .hero-foot {
+    margin-top: clamp(50px, 9vh, 110px);
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    align-items: end;
+    gap: 24px;
+    border-top: 1px solid var(--rule);
+    padding-top: 22px;
+  }
+  .hero-tag {
+    font-family: var(--sans);
+    font-weight: 400;
+    font-size: clamp(15px, 1.4vw, 18px);
+    color: var(--ink);
+    letter-spacing: -0.005em;
+    max-width: 40ch;
+    line-height: 1.35;
+  }
+  .hero-tag .em {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 400;
+    color: var(--accent);
+  }
+  .hero-foot .loc, .hero-foot .crp {
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--mute);
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  @media (max-width: 720px) {
+    .hero-foot { grid-template-columns: 1fr; }
+    .hero-foot .loc, .hero-foot .crp { white-space: normal; }
+  }
+
+  /* scroll hint */
+  .scroll-hint {
+    position: absolute;
+    left: var(--pad-x);
+    bottom: 24px;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--mute);
+    display: flex; align-items: center; gap: 10px;
+  }
+  .scroll-hint::after {
+    content: "";
+    display: inline-block;
+    width: 32px;
+    height: 1px;
+    background: var(--mute);
+    animation: drift 2.6s var(--ease) infinite;
+    transform-origin: left;
+  }
+  @keyframes drift {
+    0%, 100% { transform: scaleX(0.4); opacity: 0.5; }
+    50%      { transform: scaleX(1);    opacity: 1; }
+  }
+
+  /* ===================================================
+     ENCONTRO — photo + statement
+     =================================================== */
+  #encontro {
+    padding-block: var(--pad-y);
+  }
+  .encontro-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(32px, 6vw, 100px);
+    align-items: center;
+  }
+  @media (max-width: 880px) {
+    .encontro-grid { grid-template-columns: 1fr; gap: 48px; }
+  }
+  .encontro-photo {
+    aspect-ratio: 4 / 5;
+    background: var(--paper-deep);
+    overflow: hidden;
+    position: relative;
+    filter: saturate(0.78) contrast(1.02);
+  }
+  .encontro-photo img {
+    width: 100%; height: 100%; object-fit: cover;
+    object-position: 50% 22%;
+    transition: transform 1200ms var(--ease);
+  }
+  .encontro-photo:hover img { transform: scale(1.02); }
+  .encontro-photo .meta {
+    position: absolute; left: 16px; bottom: 16px;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--paper);
+    text-shadow: 0 1px 4px rgba(0,0,0,0.3);
+  }
+  .encontro-text .eyebrow { margin-bottom: 28px; display: block; }
+  .encontro-text h2 {
+    font-family: var(--sans);
+    font-weight: 200;
+    font-size: clamp(36px, 5.5vw, 88px);
+    line-height: 0.98;
+    letter-spacing: -0.035em;
+    margin: 0 0 32px;
+    text-wrap: balance;
+  }
+  .encontro-text h2 strong {
+    font-weight: 700;
+  }
+  .encontro-text h2 .em {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 400;
+    color: var(--accent);
+  }
+  .encontro-text p {
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--ink-2);
+    max-width: 44ch;
+    margin: 0;
+    font-weight: 300;
+  }
+
+  /* ===================================================
+     SERVIÇOS — compact tri-column
+     =================================================== */
+  #servicos {
+    padding-block: var(--pad-y);
+    background: var(--paper-soft);
+    border-top: 1px solid var(--rule-thin);
+    border-bottom: 1px solid var(--rule-thin);
+  }
+  .section-head {
+    display: flex; align-items: baseline; justify-content: space-between;
+    margin-bottom: clamp(48px, 8vh, 96px);
+    gap: 20px;
+  }
+  .section-head h2 {
+    margin: 0;
+    font-family: var(--sans);
+    font-weight: 200;
+    font-size: clamp(36px, 5vw, 72px);
+    line-height: 0.98;
+    letter-spacing: -0.035em;
+    max-width: 16ch;
+  }
+  .section-head h2 strong { font-weight: 700; }
+  .section-head h2 .em {
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--accent);
+    font-weight: 400;
+  }
+  .section-head .count {
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--mute);
+    white-space: nowrap;
+    font-weight: 500;
+  }
+
+  .services {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(20px, 3vw, 40px);
+  }
+  @media (max-width: 880px) {
+    .services { grid-template-columns: 1fr; }
+  }
+  .service {
+    background: var(--paper);
+    padding: clamp(28px, 3.4vw, 44px);
+    border: 1px solid var(--rule-thin);
+    display: flex; flex-direction: column;
+    min-height: 360px;
+    position: relative;
+    transition: background var(--ease) 400ms, transform var(--ease) 400ms, border-color var(--ease) 400ms;
+  }
+  .service:hover {
+    background: var(--paper-soft);
+    border-color: var(--rule);
+    transform: translateY(-2px);
+  }
+  .service:hover .service-cta::after { transform: scaleX(1); }
+  .service:hover .service-cta .arr { transform: translate(4px, -4px); }
+  .service-num {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 300;
+    font-size: 16px;
+    color: var(--accent);
+    margin-bottom: clamp(32px, 6vh, 80px);
+  }
+  .service-title {
+    margin: 0 0 16px;
+    font-family: var(--sans);
+    font-weight: 200;
+    font-size: clamp(26px, 2.6vw, 36px);
+    line-height: 1.02;
+    letter-spacing: -0.025em;
+    text-wrap: balance;
+  }
+  .service-title strong { font-weight: 700; }
+  .service-desc {
+    font-size: 15px;
+    line-height: 1.55;
+    color: var(--ink-2);
+    margin: 0 0 28px;
+    font-weight: 300;
+    max-width: 32ch;
+  }
+  .service-foot {
+    margin-top: auto;
+    display: flex; justify-content: space-between; align-items: end;
+    gap: 16px;
+  }
+  .service-tag {
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--mute);
+    font-weight: 500;
+    line-height: 1.6;
+  }
+  .service-cta {
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-flex; align-items: center; gap: 6px;
+    position: relative;
+    padding-bottom: 4px;
+  }
+  .service-cta::after {
+    content: ""; position: absolute; left: 0; right: 16px; bottom: 0;
+    height: 1px; background: var(--ink);
+    transform-origin: left; transform: scaleX(0);
+    transition: transform var(--ease) 500ms;
+  }
+  .service-cta .arr { display: inline-block; transition: transform var(--ease) 500ms; }
+
+  /* ===================================================
+     CONTATO — quiet, no full-color block
+     =================================================== */
+  #contato {
+    padding-block: clamp(120px, 18vh, 200px);
+  }
+  .contato-statement {
+    font-family: var(--sans);
+    font-weight: 200;
+    font-size: clamp(48px, 9vw, 160px);
+    line-height: 0.9;
+    letter-spacing: -0.04em;
+    margin: 0 0 clamp(40px, 6vh, 64px);
+    text-wrap: balance;
+    max-width: 14ch;
+  }
+  .contato-statement strong { font-weight: 700; }
+  .contato-statement .em {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 400;
+    color: var(--accent);
+  }
+  .contato-statement .dot { color: var(--accent); }
+
+  .contato-actions {
+    display: flex; flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: clamp(48px, 8vh, 88px);
+  }
+  .pill {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 16px 28px;
+    border-radius: 999px;
+    font-family: var(--sans);
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 600;
+    text-decoration: none;
+    transition: transform var(--ease) 400ms, background var(--ease) 400ms, color var(--ease) 400ms;
+  }
+  .pill-dark {
+    background: var(--ink);
+    color: var(--paper);
+  }
+  .pill-dark:hover { transform: translateY(-2px); background: var(--accent-deep); }
+  .pill-ghost {
+    background: transparent;
+    color: var(--ink);
+    border: 1px solid var(--ink);
+  }
+  .pill-ghost:hover { background: var(--ink); color: var(--paper); transform: translateY(-2px); }
+  .pill .arr { transition: transform var(--ease) 400ms; }
+  .pill:hover .arr { transform: translateX(4px); }
+
+  .contato-fine {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 32px;
+    padding-top: 28px;
+    border-top: 1px solid var(--rule);
+    max-width: 880px;
+  }
+  .contato-fine dt {
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--mute);
+    font-weight: 500;
+    margin-bottom: 6px;
+  }
+  .contato-fine dd {
+    margin: 0;
+    font-family: var(--sans);
+    font-size: 15px;
+    color: var(--ink);
+    font-weight: 400;
+    line-height: 1.4;
+  }
+  .contato-fine dd a {
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 1px;
+    transition: border-color var(--ease) 300ms;
+  }
+  .contato-fine dd a:hover { border-color: var(--accent); }
+
+  /* ===================================================
+     FOOTER
+     =================================================== */
+  footer.foot {
+    padding-block: 40px 36px;
+    border-top: 1px solid var(--rule-thin);
+  }
+  footer.foot .row {
+    display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--mute);
+    font-weight: 500;
+  }
+
+  /* ===================================================
+     Reveal
+     =================================================== */
+  .reveal { opacity: 0; transform: translateY(16px); transition: opacity 1000ms var(--ease), transform 1000ms var(--ease); }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+
+  ::selection { background: var(--accent); color: var(--paper); }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  }
+</style>
+</head>
+<body>
+
+<header class="top" id="topbar">
+  <div class="wrap bar">
+    <a class="mark" href="#">A.E.C.</a>
+    <a class="top-cta" href="#contato">
+      Agendar uma sessão
+      <span class="arr" aria-hidden="true">↗</span>
+    </a>
+  </div>
+</header>
+
+<!-- ================== HERO ================== -->
+<section class="hero">
+  <div class="wrap">
+    <h1 class="name-sculpture reveal">
+      <span class="ln ln-1">ana</span>
+      <span class="ln ln-2">emilia</span>
+      <span class="ln ln-3">costa<span class="dot">.</span></span>
+    </h1>
+
+    <div class="hero-foot reveal">
+      <p class="hero-tag">
+        Psicoterapia clínica <span class="em">online</span> — para adolescentes, mães e indivíduos em travessia.
+      </p>
+      <span class="loc">Cantagalo · MG</span>
+      <span class="crp">CRP 07/25956</span>
+    </div>
+  </div>
+
+  <div class="scroll-hint" aria-hidden="true">Role</div>
+</section>
+
+<!-- ================== ENCONTRO ================== -->
+<section id="encontro">
+  <div class="wrap encontro-grid">
+    <div class="encontro-photo reveal">
+      <img src="assets/ana.jpg" alt="Retrato de Ana Emilia Costa">
+      <span class="meta">— A.E.C.</span>
+    </div>
+
+    <div class="encontro-text">
+      <span class="eyebrow reveal">— Quem sou</span>
+      <h2 class="reveal">
+        Escutar <span class="em">com tempo</span>. Cuidar <strong>com presença</strong>.
+      </h2>
+      <p class="reveal">
+        Psicóloga clínica e psicoterapeuta. Recebo pessoas em momentos de travessia — no ritmo de cada uma, sem pressa, com escuta atenta.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ================== SERVIÇOS ================== -->
+<section id="servicos">
+  <div class="wrap">
+    <header class="section-head reveal">
+      <h2>
+        Três caminhos <br><span class="em">de</span> <strong>cuidado</strong>.
+      </h2>
+      <span class="count">03 — serviços</span>
+    </header>
+
+    <div class="services">
+      <article class="service reveal">
+        <span class="service-num">i.</span>
+        <h3 class="service-title">Para <strong>adolescentes</strong></h3>
+        <p class="service-desc">
+          Um espaço de escuta para a fase mais movediça da vida — identidade, escola, vínculos, família.
+        </p>
+        <div class="service-foot">
+          <span class="service-tag">50 min<br>semanal</span>
+          <a class="service-cta" href="#contato">Saber mais <span class="arr">↗</span></a>
+        </div>
+      </article>
+
+      <article class="service reveal">
+        <span class="service-num">ii.</span>
+        <h3 class="service-title">Para <strong>mães</strong></h3>
+        <p class="service-desc">
+          Acolhimento para a jornada da maternidade — autocuidado, emoções, expectativas e equilíbrio.
+        </p>
+        <div class="service-foot">
+          <span class="service-tag">50 min<br>flexível</span>
+          <a class="service-cta" href="#contato">Saber mais <span class="arr">↗</span></a>
+        </div>
+      </article>
+
+      <article class="service reveal">
+        <span class="service-num">iii.</span>
+        <h3 class="service-title">Psicoterapia <strong>individual</strong></h3>
+        <p class="service-desc">
+          Aprofundar em si — ansiedade, autoestima, relacionamentos, autoconhecimento.
+        </p>
+        <div class="service-foot">
+          <span class="service-tag">50 min<br>quinzenal ou semanal</span>
+          <a class="service-cta" href="#contato">Saber mais <span class="arr">↗</span></a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================== CONTATO ================== -->
+<section id="contato">
+  <div class="wrap">
+    <h2 class="contato-statement reveal">
+      <span class="em">vamos</span> <br><strong>conversar</strong><span class="dot">.</span>
+    </h2>
+
+    <div class="contato-actions reveal">
+      <a class="pill pill-dark" href="mailto:costa.anaemilia@gmail.com">
+        E-mail <span class="arr">→</span>
+      </a>
+      <a class="pill pill-ghost" href="https://wa.me/5500000000000" target="_blank" rel="noopener">
+        WhatsApp <span class="arr">→</span>
+      </a>
+    </div>
+
+    <dl class="contato-fine reveal">
+      <div>
+        <dt>E-mail</dt>
+        <dd><a href="mailto:costa.anaemilia@gmail.com">costa.anaemilia@gmail.com</a></dd>
+      </div>
+      <div>
+        <dt>Localização</dt>
+        <dd>Cantagalo, MG · Brasil</dd>
+      </div>
+      <div>
+        <dt>Atendimento</dt>
+        <dd>Somente com hora marcada</dd>
+      </div>
+      <div>
+        <dt>CRP</dt>
+        <dd>07/25956 · 04/IS01674</dd>
+      </div>
+    </dl>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap row">
+    <span>Ana Emilia Costa · Psicóloga clínica</span>
+    <span>© 2026</span>
+  </div>
+</footer>
+
+<script>
+
+  /* Topbar scroll state */
+  const topbar = document.getElementById("topbar");
+  function onScroll() {
+    if (window.scrollY > 30) topbar.classList.add("scrolled");
+    else topbar.classList.remove("scrolled");
+  }
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+
+  /* Reveal */
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
+  document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
