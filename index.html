@@ -94,16 +94,19 @@
     text-transform: uppercase;
     color: var(--ink);
     text-decoration: none;
-    display: flex; align-items: center; gap: 8px;
+    display: flex; align-items: center; gap: 10px;
   }
-  .mark::before {
-    content: "";
-    width: 8px; height: 8px;
-    border-radius: 50%;
-    background: var(--accent);
-    transition: transform var(--ease) 400ms;
+  .mark-icon {
+    width: 28px; height: 28px;
+    border-radius: 6px;
+    background: var(--paper-deep);
+    display: flex; align-items: center; justify-content: center;
+    transition: transform var(--ease) 400ms, background var(--ease) 400ms;
+    flex-shrink: 0;
   }
-  .mark:hover::before { transform: scale(1.4); }
+  .mark:hover .mark-icon { transform: rotate(-6deg) scale(1.08); background: var(--accent); }
+  .mark:hover .mark-icon svg text { fill: var(--paper); }
+  .mark:hover .mark-icon svg circle { fill: var(--paper); }
   .top-cta {
     font-family: var(--sans);
     font-size: 12px;
@@ -234,21 +237,24 @@
     font-size: 10px;
     letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: var(--mute);
-    display: flex; align-items: center; gap: 10px;
+    color: var(--accent);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
   }
   .scroll-hint::after {
     content: "";
-    display: inline-block;
-    width: 32px;
-    height: 1px;
-    background: var(--mute);
-    animation: drift 2.6s var(--ease) infinite;
-    transform-origin: left;
+    display: block;
+    width: 1px;
+    height: 48px;
+    background: var(--accent);
+    animation: driftV 2.6s var(--ease) infinite;
+    transform-origin: top;
   }
-  @keyframes drift {
-    0%, 100% { transform: scaleX(0.4); opacity: 0.5; }
-    50%      { transform: scaleX(1);    opacity: 1; }
+  @keyframes driftV {
+    0%, 100% { transform: scaleY(0.3); opacity: 0.4; }
+    50%      { transform: scaleY(1);   opacity: 1; }
   }
 
   /* ===================================================
@@ -600,8 +606,26 @@
   /* ===================================================
      Reveal
      =================================================== */
-  .reveal { opacity: 0; transform: translateY(16px); transition: opacity 1000ms var(--ease), transform 1000ms var(--ease); }
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 900ms var(--ease), transform 900ms var(--ease); }
   .reveal.in { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: 120ms; }
+  .reveal-delay-2 { transition-delay: 240ms; }
+  .reveal-delay-3 { transition-delay: 360ms; }
+
+  /* integração entre seções — faixa de gradiente */
+  #encontro { background: linear-gradient(to bottom, var(--paper) 0%, var(--paper-soft) 100%); }
+  #servicos  { background: linear-gradient(to bottom, var(--paper-soft) 0%, var(--paper-deep) 100%); }
+  #espaco    { background: linear-gradient(to bottom, var(--paper-deep) 0%, var(--paper-soft) 100%); }
+  #contato   { background: linear-gradient(to bottom, var(--paper-soft) 0%, var(--paper) 100%); }
+
+  /* hover nos cards de serviço — sombra suave */
+  .service {
+    transition: background var(--ease) 400ms, transform var(--ease) 400ms,
+                border-color var(--ease) 400ms, box-shadow var(--ease) 400ms;
+  }
+  .service:hover {
+    box-shadow: 0 8px 32px rgba(27,25,22,0.07);
+  }
 
   ::selection { background: var(--accent); color: var(--paper); }
 
@@ -614,7 +638,15 @@
 
 <header class="top" id="topbar">
   <div class="wrap bar">
-    <a class="mark" href="#">A.E.C.</a>
+    <a class="mark" href="#">
+      <span class="mark-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="20" height="20">
+          <text x="12" y="22" text-anchor="middle" font-family="Georgia, serif" font-style="italic" font-weight="400" font-size="18" fill="#1B1916">a</text>
+          <circle cx="22" cy="22" r="2.5" fill="#B45414"/>
+        </svg>
+      </span>
+      A.E.C.
+    </a>
     <a class="top-cta" href="#contato">
       Agendar uma sessão
       <span class="arr" aria-hidden="true">↗</span>
@@ -674,7 +706,7 @@
     </header>
 
     <div class="services">
-      <article class="service reveal">
+      <article class="service reveal reveal-delay-1">
         <span class="service-num">i.</span>
         <h3 class="service-title">Para <strong>adolescentes</strong></h3>
         <p class="service-desc">
@@ -686,7 +718,7 @@
         </div>
       </article>
 
-      <article class="service reveal">
+      <article class="service reveal reveal-delay-2">
         <span class="service-num">ii.</span>
         <h3 class="service-title">Para <strong>mães</strong></h3>
         <p class="service-desc">
@@ -698,7 +730,7 @@
         </div>
       </article>
 
-      <article class="service reveal">
+      <article class="service reveal reveal-delay-3">
         <span class="service-num">iii.</span>
         <h3 class="service-title">Psicoterapia <strong>individual</strong></h3>
         <p class="service-desc">
