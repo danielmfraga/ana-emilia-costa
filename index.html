@@ -268,7 +268,7 @@
   .encontro-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: clamp(32px, 6vw, 100px);
+    gap: clamp(24px, 4vw, 56px);
     align-items: center;
   }
   @media (max-width: 880px) {
@@ -617,11 +617,8 @@
   .reveal-delay-2 { transition-delay: 240ms; }
   .reveal-delay-3 { transition-delay: 360ms; }
 
-  /* integração entre seções — faixa de gradiente */
-  #encontro { background: linear-gradient(to bottom, var(--paper) 0%, var(--paper-soft) 100%); }
-  #servicos  { background: linear-gradient(to bottom, var(--paper-soft) 0%, var(--paper-deep) 100%); }
-  #espaco    { background: linear-gradient(to bottom, var(--paper-deep) 0%, var(--paper-soft) 100%); }
-  #contato   { background: linear-gradient(to bottom, var(--paper-soft) 0%, var(--paper) 100%); }
+  /* seções com fundo uniforme — sem tarjas */
+  #servicos { background: var(--paper-soft); }
 
   /* hover nos cards de serviço — sombra suave */
   .service {
@@ -776,7 +773,6 @@
     </div>
   </div>
 
-  <div class="scroll-hint" aria-hidden="true">Role</div>
 </section>
 
 <div class="section-connector" aria-hidden="true">Role</div>
@@ -869,6 +865,9 @@
       <a class="pill pill-ghost" href="https://wa.me/5500000000000" target="_blank" rel="noopener">
         WhatsApp <span class="arr">→</span>
       </a>
+      <a class="pill pill-ghost" href="https://www.instagram.com/anaemiliacosta.psicologia" target="_blank" rel="noopener">
+        Instagram <span class="arr">→</span>
+      </a>
     </div>
 
     <dl class="contato-fine reveal">
@@ -923,7 +922,15 @@
 
 <footer class="foot">
   <div class="wrap row">
-    <span>Ana Emilia Costa · Psicóloga clínica</span>
+    <span style="display:flex;align-items:center;gap:10px;">
+      <span style="width:28px;height:28px;border-radius:7px;background:var(--paper-deep);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 28" width="20" height="18">
+          <text x="10" y="22" text-anchor="middle" font-family="Georgia,serif" font-style="italic" font-size="22" fill="#1B1916">a</text>
+          <circle cx="24" cy="22" r="3.5" fill="#B45414"/>
+        </svg>
+      </span>
+      Ana Emilia Costa · Psicóloga clínica
+    </span>
     <span>© 2026</span>
   </div>
 </footer>
