@@ -16,9 +16,9 @@
      SISTEMA — off-white nuvem, tipografia como evento
      ===================================================== */
   :root {
-    --paper:        #ECEAE3;   /* cor nuvem */
-    --paper-deep:   #E2DFD5;   /* sombra de papel */
-    --paper-soft:   #F2F0EA;   /* destaque mais claro */
+    --paper:        #F7F6F3;   /* off-white claro */
+    --paper-deep:   #EDECEA;   /* sombra suave */
+    --paper-soft:   #F2F1EE;   /* destaque mais claro */
     --ink:          #1B1916;
     --ink-2:        #4B463E;
     --mute:         #8C8678;
@@ -153,8 +153,8 @@
   .name-sculpture .ln {
     display: block;
   }
-  /* "ana" — thin */
-  .ln-1 { font-weight: 200; letter-spacing: -0.02em; }
+  /* "ana" — light */
+  .ln-1 { font-weight: 300; letter-spacing: -0.02em; }
   /* "emilia" — italic serif */
   .ln-2 {
     font-family: var(--serif);
@@ -163,13 +163,12 @@
     font-variation-settings: "opsz" 18;
     margin-left: clamp(40px, 9vw, 150px);
     color: var(--ink);
-    /* tweak: a touch larger optical compensation */
     font-size: 1.06em;
     line-height: 0.9;
   }
   /* "costa." — bold */
   .ln-3 {
-    font-weight: 800;
+    font-weight: 700;
     letter-spacing: -0.05em;
     margin-left: clamp(20px, 5vw, 80px);
   }
@@ -279,7 +278,7 @@
   .encontro-text .eyebrow { margin-bottom: 28px; display: block; }
   .encontro-text h2 {
     font-family: var(--sans);
-    font-weight: 200;
+    font-weight: 300;
     font-size: clamp(36px, 5.5vw, 88px);
     line-height: 0.98;
     letter-spacing: -0.035em;
@@ -321,7 +320,7 @@
   .section-head h2 {
     margin: 0;
     font-family: var(--sans);
-    font-weight: 200;
+    font-weight: 300;
     font-size: clamp(36px, 5vw, 72px);
     line-height: 0.98;
     letter-spacing: -0.035em;
@@ -378,7 +377,7 @@
   .service-title {
     margin: 0 0 16px;
     font-family: var(--sans);
-    font-weight: 200;
+    font-weight: 300;
     font-size: clamp(26px, 2.6vw, 36px);
     line-height: 1.02;
     letter-spacing: -0.025em;
@@ -433,7 +432,7 @@
   }
   .contato-statement {
     font-family: var(--sans);
-    font-weight: 200;
+    font-weight: 300;
     font-size: clamp(48px, 9vw, 160px);
     line-height: 0.9;
     letter-spacing: -0.04em;
@@ -513,6 +512,60 @@
     transition: border-color var(--ease) 300ms;
   }
   .contato-fine dd a:hover { border-color: var(--accent); }
+
+  /* ===================================================
+     ESPAÇO — escritório
+     =================================================== */
+  #espaco {
+    padding-block: var(--pad-y);
+    border-top: 1px solid var(--rule-thin);
+  }
+  .espaco-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(32px, 6vw, 100px);
+    align-items: center;
+  }
+  @media (max-width: 880px) {
+    .espaco-grid { grid-template-columns: 1fr; gap: 48px; }
+  }
+  .espaco-photo {
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    background: var(--paper-deep);
+    filter: saturate(0.85) contrast(1.02);
+  }
+  .espaco-photo img {
+    width: 100%; height: 100%; object-fit: cover;
+    object-position: 50% 50%;
+    transition: transform 1200ms var(--ease);
+  }
+  .espaco-photo:hover img { transform: scale(1.02); }
+  .espaco-text .eyebrow { margin-bottom: 28px; display: block; }
+  .espaco-text h2 {
+    font-family: var(--sans);
+    font-weight: 300;
+    font-size: clamp(32px, 4.5vw, 72px);
+    line-height: 1.0;
+    letter-spacing: -0.03em;
+    margin: 0 0 24px;
+    text-wrap: balance;
+  }
+  .espaco-text h2 strong { font-weight: 700; }
+  .espaco-text h2 .em {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 400;
+    color: var(--accent);
+  }
+  .espaco-text p {
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--ink-2);
+    max-width: 44ch;
+    margin: 0;
+    font-weight: 300;
+  }
 
   /* ===================================================
      FOOTER
@@ -680,6 +733,24 @@
         <dd>07/25956 · 04/IS01674</dd>
       </div>
     </dl>
+  </div>
+</section>
+
+<!-- ================== ESPAÇO ================== -->
+<section id="espaco">
+  <div class="wrap espaco-grid">
+    <div class="espaco-photo reveal">
+      <img src="assets/escritorio.jpg" alt="Consultório Ana Emilia Costa">
+    </div>
+    <div class="espaco-text">
+      <span class="eyebrow reveal">— O espaço</span>
+      <h2 class="reveal">
+        Um lugar <span class="em">feito</span> para <strong>você</strong>.
+      </h2>
+      <p class="reveal">
+        Atendimento online, mas com toda a presença de um encontro real. Você no conforto do seu espaço, eu no meu — juntas construindo um lugar seguro de escuta e cuidado.
+      </p>
+    </div>
   </div>
 </section>
 
