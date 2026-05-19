@@ -97,16 +97,18 @@
     display: flex; align-items: center; gap: 10px;
   }
   .mark-icon {
-    width: 28px; height: 28px;
-    border-radius: 6px;
+    width: 36px; height: 36px;
+    border-radius: 8px;
     background: var(--paper-deep);
     display: flex; align-items: center; justify-content: center;
     transition: transform var(--ease) 400ms, background var(--ease) 400ms;
     flex-shrink: 0;
+    overflow: hidden;
   }
-  .mark:hover .mark-icon { transform: rotate(-6deg) scale(1.08); background: var(--accent); }
-  .mark:hover .mark-icon svg text { fill: var(--paper); }
-  .mark:hover .mark-icon svg circle { fill: var(--paper); }
+  .mark-icon svg { width: 28px; height: 28px; }
+  .mark:hover .mark-icon { transform: rotate(-6deg) scale(1.1); background: var(--accent); }
+  .mark:hover .mark-icon .icon-letter { fill: var(--paper); }
+  .mark:hover .mark-icon .icon-dot { fill: var(--paper); }
   .top-cta {
     font-family: var(--sans);
     font-size: 12px;
@@ -273,12 +275,13 @@
     .encontro-grid { grid-template-columns: 1fr; gap: 48px; }
   }
   .encontro-photo {
-    aspect-ratio: 4 / 5;
+    aspect-ratio: 3 / 4;
     background: var(--paper-deep);
     overflow: hidden;
     position: relative;
     filter: saturate(0.78) contrast(1.02);
     border-radius: 20px;
+    max-width: 380px;
   }
   .encontro-photo img {
     width: 100%; height: 100%; object-fit: cover;
@@ -434,6 +437,8 @@
     display: inline-flex; align-items: center; gap: 6px;
     position: relative;
     padding-bottom: 4px;
+    background: none; border: none; cursor: pointer;
+    font-family: var(--sans);
   }
   .service-cta::after {
     content: ""; position: absolute; left: 0; right: 16px; bottom: 0;
@@ -627,6 +632,105 @@
     box-shadow: 0 8px 32px rgba(27,25,22,0.07);
   }
 
+  /* conector entre seções */
+  .section-connector {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 12px 0;
+    gap: 8px;
+    font-size: 9px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  .section-connector::after {
+    content: "";
+    display: block;
+    width: 1px;
+    height: 56px;
+    background: var(--accent);
+    animation: driftV 2.6s var(--ease) infinite;
+    transform-origin: top;
+  }
+
+  /* ===================================================
+     DRAWER
+     =================================================== */
+  .drawer-overlay {
+    position: fixed; inset: 0; z-index: 200;
+    background: rgba(27,25,22,0.45);
+    opacity: 0; pointer-events: none;
+    transition: opacity 500ms var(--ease);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+  }
+  .drawer-overlay.open { opacity: 1; pointer-events: all; }
+
+  .drawer {
+    position: fixed; top: 0; right: 0; bottom: 0; z-index: 201;
+    width: min(520px, 95vw);
+    background: var(--paper);
+    padding: clamp(36px, 5vw, 64px);
+    overflow-y: auto;
+    transform: translateX(100%);
+    transition: transform 600ms var(--ease);
+    display: flex; flex-direction: column;
+  }
+  .drawer.open { transform: translateX(0); }
+
+  .drawer-close {
+    align-self: flex-end;
+    background: none; border: none; cursor: pointer;
+    width: 36px; height: 36px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; color: var(--ink);
+    margin-bottom: 36px;
+    border: 1px solid var(--rule);
+    transition: background var(--ease) 300ms, border-color var(--ease) 300ms;
+    flex-shrink: 0;
+  }
+  .drawer-close:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+
+  .drawer-num {
+    font-family: var(--serif); font-style: italic;
+    font-size: 14px; color: var(--accent); margin-bottom: 12px; display: block;
+  }
+  .drawer-title {
+    font-family: var(--sans); font-weight: 700;
+    font-size: clamp(22px, 3vw, 32px);
+    line-height: 1.1; letter-spacing: -0.02em;
+    margin: 0 0 28px; color: var(--ink);
+  }
+  .drawer-body p {
+    font-size: 16px; line-height: 1.75;
+    color: var(--ink-2); margin: 0 0 18px; font-weight: 300;
+  }
+  .drawer-how {
+    margin-top: 28px; padding-top: 24px;
+    border-top: 1px solid var(--rule);
+  }
+  .drawer-how-label {
+    font-size: 10px; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--accent);
+    font-weight: 500; margin-bottom: 12px; display: block;
+  }
+  .drawer-how p {
+    font-size: 15px; line-height: 1.7;
+    color: var(--ink-2); font-weight: 300; margin: 0;
+  }
+  .drawer-cta {
+    display: inline-flex; align-items: center; gap: 10px;
+    margin-top: 40px; padding: 16px 32px;
+    background: var(--ink); color: var(--paper);
+    font-family: var(--sans); font-size: 12px;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    font-weight: 600; text-decoration: none;
+    border-radius: 999px; align-self: flex-start;
+    transition: background 400ms var(--ease), transform 400ms var(--ease);
+  }
+  .drawer-cta:hover { background: var(--accent); transform: translateY(-2px); }
+
   ::selection { background: var(--accent); color: var(--paper); }
 
   @media (prefers-reduced-motion: reduce) {
@@ -640,9 +744,9 @@
   <div class="wrap bar">
     <a class="mark" href="#">
       <span class="mark-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="20" height="20">
-          <text x="12" y="22" text-anchor="middle" font-family="Georgia, serif" font-style="italic" font-weight="400" font-size="18" fill="#1B1916">a</text>
-          <circle cx="22" cy="22" r="2.5" fill="#B45414"/>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 28">
+          <text x="10" y="22" text-anchor="middle" font-family="Georgia, serif" font-style="italic" font-weight="400" font-size="22" class="icon-letter" fill="#1B1916">a</text>
+          <circle cx="24" cy="22" r="3.5" class="icon-dot" fill="#B45414"/>
         </svg>
       </span>
       A.E.C.
@@ -675,6 +779,8 @@
   <div class="scroll-hint" aria-hidden="true">Role</div>
 </section>
 
+<div class="section-connector" aria-hidden="true">Role</div>
+
 <!-- ================== ENCONTRO ================== -->
 <section id="encontro">
   <div class="wrap encontro-grid">
@@ -695,6 +801,8 @@
   </div>
 </section>
 
+<div class="section-connector" aria-hidden="true">Role</div>
+
 <!-- ================== SERVIÇOS ================== -->
 <section id="servicos">
   <div class="wrap">
@@ -714,7 +822,7 @@
         </p>
         <div class="service-foot">
           <span class="service-tag">50 min<br>semanal</span>
-          <a class="service-cta" href="#contato">Saber mais <span class="arr">↗</span></a>
+          <button class="service-cta" onclick="openDrawer(0)">Saber mais <span class="arr">↗</span></button>
         </div>
       </article>
 
@@ -726,7 +834,7 @@
         </p>
         <div class="service-foot">
           <span class="service-tag">50 min<br>flexível</span>
-          <a class="service-cta" href="#contato">Saber mais <span class="arr">↗</span></a>
+          <button class="service-cta" onclick="openDrawer(1)">Saber mais <span class="arr">↗</span></button>
         </div>
       </article>
 
@@ -738,12 +846,14 @@
         </p>
         <div class="service-foot">
           <span class="service-tag">50 min<br>quinzenal ou semanal</span>
-          <a class="service-cta" href="#contato">Saber mais <span class="arr">↗</span></a>
+          <button class="service-cta" onclick="openDrawer(2)">Saber mais <span class="arr">↗</span></button>
         </div>
       </article>
     </div>
   </div>
 </section>
+
+<div class="section-connector" aria-hidden="true">Role</div>
 
 <!-- ================== CONTATO ================== -->
 <section id="contato">
@@ -800,6 +910,17 @@
   </div>
 </section>
 
+<!-- ================== DRAWER ================== -->
+<div class="drawer-overlay" id="drawerOverlay" onclick="closeDrawer()"></div>
+<div class="drawer" id="drawer" role="dialog" aria-modal="true">
+  <button class="drawer-close" onclick="closeDrawer()" aria-label="Fechar">✕</button>
+  <span class="drawer-num" id="drawerNum"></span>
+  <h2 class="drawer-title" id="drawerTitle"></h2>
+  <div class="drawer-body" id="drawerBody"></div>
+  <div class="drawer-how" id="drawerHow"></div>
+  <a class="drawer-cta" href="#contato" onclick="closeDrawer()">Agendar uma sessão →</a>
+</div>
+
 <footer class="foot">
   <div class="wrap row">
     <span>Ana Emilia Costa · Psicóloga clínica</span>
@@ -808,6 +929,48 @@
 </footer>
 
 <script>
+
+  /* ── Drawer ── */
+  const services = [
+    {
+      num: "i.",
+      title: "Psicoterapia para Adolescentes Online",
+      body: "O atendimento a adolescentes foca em ajudá-los a enfrentar desafios próprios dessa fase de descobertas e transformações, como questões de identidade, autoestima, dificuldades escolares, relacionamentos e conflitos familiares. Proporciono um ambiente empático, onde a/o adolescente pode se expressar livremente, trabalhando aspectos emocionais e comportamentais importantes para o seu desenvolvimento saudável.",
+      how: "As sessões, de 50 minutos, são adaptadas à linguagem e ao universo do adolescente, criando uma comunicação aberta e espontânea. Atendimentos são semanais ou quinzenais, com uso de plataformas seguras e interativas."
+    },
+    {
+      num: "ii.",
+      title: "Acompanhamento Psicológico Online para Mães",
+      body: "Ser mãe é uma jornada intensa e, muitas vezes, solitária. O acompanhamento psicológico para mães oferece um espaço de acolhimento, onde você pode expressar suas angústias, inseguranças e desafios, buscando equilíbrio emocional e autocompaixão. Compreendemos as particularidades e complexidades da maternidade, auxiliando na construção de uma relação saudável com você mesma e com seus filhos.",
+      how: "As sessões são realizadas semanal ou quinzenalmente, com duração de 50 minutos, e podem incluir temas como autocuidado, gestão de emoções e expectativas familiares. Realizadas em plataforma segura e com horários flexíveis para atender à sua rotina."
+    },
+    {
+      num: "iii.",
+      title: "Psicoterapia Individual Online",
+      body: "A psicoterapia individual é um espaço seguro e confidencial para que você possa se aprofundar em si mesma, entender seus sentimentos, pensamentos e comportamentos. Juntas, trabalhamos questões como ansiedade, depressão, autoestima, relacionamentos e autoconhecimento, entre outros aspectos. O atendimento online oferece a comodidade e o conforto de estar no seu ambiente pessoal, possibilitando uma experiência acolhedora e sem deslocamentos.",
+      how: "As sessões são realizadas por vídeo, com duração de 50 minutos, uma vez por semana ou quinzenalmente, conforme a sua necessidade. Utilizamos plataformas seguras, garantindo total privacidade."
+    }
+  ];
+
+  function openDrawer(i) {
+    const s = services[i];
+    document.getElementById("drawerNum").textContent = s.num;
+    document.getElementById("drawerTitle").textContent = s.title;
+    document.getElementById("drawerBody").innerHTML = `<p>${s.body}</p>`;
+    document.getElementById("drawerHow").innerHTML =
+      `<span class="drawer-how-label">Como funciona</span><p>${s.how}</p>`;
+    document.getElementById("drawer").classList.add("open");
+    document.getElementById("drawerOverlay").classList.add("open");
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeDrawer() {
+    document.getElementById("drawer").classList.remove("open");
+    document.getElementById("drawerOverlay").classList.remove("open");
+    document.body.style.overflow = "";
+  }
+
+  document.addEventListener("keydown", e => { if (e.key === "Escape") closeDrawer(); });
 
   /* Topbar scroll state */
   const topbar = document.getElementById("topbar");
