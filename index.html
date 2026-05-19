@@ -173,27 +173,38 @@
     margin-left: clamp(20px, 5vw, 80px);
   }
   .ln-3 .dot {
-    color: var(--accent);
-    margin-left: 2px;
+    display: inline-block;
+    width: 0.18em;
+    height: 0.18em;
+    border-radius: 50%;
+    background: var(--accent);
+    vertical-align: baseline;
+    margin-left: 4px;
+    margin-bottom: 0.1em;
+    animation: dotClose 1.4s var(--ease) 0.3s both;
+  }
+
+  @keyframes dotClose {
+    0%   { width: 1.2em; height: 1.2em; margin-bottom: -0.18em; opacity: 0.6; }
+    60%  { opacity: 1; }
+    100% { width: 0.18em; height: 0.18em; margin-bottom: 0.1em; opacity: 1; }
   }
 
   .hero-foot {
-    margin-top: clamp(50px, 9vh, 110px);
+    margin-top: clamp(32px, 5vh, 64px);
     display: grid;
     grid-template-columns: 1fr auto auto;
     align-items: end;
     gap: 24px;
-    border-top: 1px solid var(--rule);
-    padding-top: 22px;
   }
   .hero-tag {
     font-family: var(--sans);
-    font-weight: 400;
-    font-size: clamp(15px, 1.4vw, 18px);
-    color: var(--ink);
+    font-weight: 300;
+    font-size: clamp(16px, 1.5vw, 20px);
+    color: var(--ink-2);
     letter-spacing: -0.005em;
-    max-width: 40ch;
-    line-height: 1.35;
+    max-width: 44ch;
+    line-height: 1.4;
   }
   .hero-tag .em {
     font-family: var(--serif);
@@ -616,7 +627,7 @@
     <h1 class="name-sculpture reveal">
       <span class="ln ln-1">ana</span>
       <span class="ln ln-2">emilia</span>
-      <span class="ln ln-3">costa<span class="dot">.</span></span>
+      <span class="ln ln-3">costa<span class="dot" aria-hidden="true"></span></span>
     </h1>
 
     <div class="hero-foot reveal">
