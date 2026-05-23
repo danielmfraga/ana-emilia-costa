@@ -231,6 +231,58 @@
     .hero-foot .loc, .hero-foot .crp { white-space: normal; }
   }
 
+  /* ===================================================
+     MOBILE
+     =================================================== */
+  @media (max-width: 880px) {
+
+    /* Espaçamento geral reduzido */
+    :root { --pad-y: clamp(48px, 8vh, 80px); }
+
+    /* Hero mais compacto */
+    .hero { padding-top: 80px; padding-bottom: 32px; min-height: auto; }
+    .hero-foot {
+      margin-top: 28px;
+      margin-left: 0;
+      gap: 12px;
+    }
+    .hero-tag { font-size: 16px; }
+
+    /* Conector Role menor */
+    .section-connector { padding: 4px 0; gap: 6px; }
+    .section-connector::after { height: 36px; }
+
+    /* Separação visual entre seções — fundo alternado */
+    #encontro  { background: var(--paper); }
+    #servicos  { background: var(--paper-soft); border-radius: 24px 24px 0 0; margin-top: -12px; }
+    #espaco    { background: var(--paper); border-radius: 24px 24px 0 0; margin-top: -12px; }
+    #contato   { background: var(--paper-soft); border-radius: 24px 24px 0 0; margin-top: -12px; }
+
+    /* Serviços em coluna única com gap menor */
+    .services { gap: 12px; }
+    .service { min-height: auto; }
+
+    /* Contato mais apertado */
+    #contato { padding-block: clamp(48px, 8vh, 80px); }
+    .contato-statement { margin-bottom: clamp(24px, 4vh, 40px); }
+    .contato-actions { margin-bottom: clamp(28px, 4vh, 48px); }
+    .contato-fine { gap: 20px; }
+
+    /* Espaço/escritório */
+    .espaco-grid { gap: 28px; }
+
+    /* Encontro */
+    .encontro-grid { gap: 28px; }
+    .encontro-photo { max-width: 100%; }
+
+    /* Section head */
+    .section-head { margin-bottom: clamp(28px, 5vh, 56px); flex-direction: column; gap: 8px; }
+
+    /* Footer */
+    footer.foot { padding-block: 28px 24px; }
+    footer.foot .row { flex-direction: column; gap: 10px; }
+  }
+
   /* scroll hint */
   .scroll-hint {
     position: absolute;
