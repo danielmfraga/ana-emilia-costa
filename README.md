@@ -86,6 +86,15 @@ alterar a variável `--accent` no topo do `<style>` em `emconstrucao.html`.
 Sugestões testadas: tijolo `#9A3216`, mostarda `#8E6F08`, musgo
 `#5C6622`, grafite `#3A352D`.
 
+## Formulário "Receba um contato" (cartão)
+
+No último cartão, o botão **Receba um contato** abre um formulário (nome, WhatsApp
+e mensagem opcional). **Ainda não grava em planilha**: enquanto a constante
+`FORM_ENDPOINT` (no fim do `index.html`) estiver vazia, o envio abre o WhatsApp da Ana
+com a mensagem pronta, então o contato não se perde. Para ligar o Google Planilhas:
+crie a planilha, cole o código do Apps Script (está comentado junto da constante),
+publique como App da Web ("Qualquer pessoa") e cole a URL `/exec` em `FORM_ENDPOINT`.
+
 ## Licença
 
 © 2026 Ana Emilia Costa. Todos os direitos reservados.
