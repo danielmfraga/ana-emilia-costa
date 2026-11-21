@@ -8,13 +8,20 @@ de build.
 
 ```
 site/
-├── index.html        — página única, CSS e JS embutidos
+├── index.html         — o CARTÃO (a página inicial do domínio; noindex)
+├── emconstrucao.html  — o site completo, enquanto não fica pronto
+│                        (em /emconstrucao; noindex, sem link de lugar nenhum)
 ├── assets/
-│   └── ana.jpg       — retrato da Ana
+│   └── ana.jpg        — retrato da Ana
 ├── README.md
 ├── .gitignore
-└── vercel.json       — config opcional para deploy na Vercel
+└── vercel.json        — URLs limpas, /cartao → /, cabeçalho noindex do /emconstrucao
 ```
+
+> **Estado atual (nov/2026):** o site ainda não está pronto, então o domínio
+> mostra só o cartão. Para lançar o site: troque os nomes (`index.html` →
+> `cartao.html`, `emconstrucao.html` → `index.html`), tire o `noindex` da
+> página nova e o redirecionamento/cabeçalho do `vercel.json`.
 
 ## Como rodar localmente
 
@@ -66,7 +73,7 @@ O site carrega **Archivo** e **Newsreader** do Google Fonts via
 ## Conteúdo a substituir
 
 - **Foto** — `assets/ana.jpg` (atual: foto da Ana lendo Freud)
-- **WhatsApp** — em `index.html`, o link
+- **WhatsApp** — em `emconstrucao.html`, o link
   `https://wa.me/5500000000000` é placeholder. Substituir pelo número
   real, formato internacional sem `+` ou espaços (ex.:
   `5532999998888`).
@@ -75,7 +82,7 @@ O site carrega **Archivo** e **Newsreader** do Google Fonts via
 ## Cor de acento
 
 A paleta usa terracota (`#B45414`) como acento. Para trocar, basta
-alterar a variável `--accent` no topo do `<style>` em `index.html`.
+alterar a variável `--accent` no topo do `<style>` em `emconstrucao.html`.
 Sugestões testadas: tijolo `#9A3216`, mostarda `#8E6F08`, musgo
 `#5C6622`, grafite `#3A352D`.
 
